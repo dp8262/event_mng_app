@@ -1,8 +1,7 @@
 import 'package:event_mng_app/screens/aboutus.dart';
 import 'package:event_mng_app/screens/bookinfo.dart';
-import 'package:event_mng_app/screens/booking.dart';
 import 'package:event_mng_app/screens/feedback.dart';
-import 'package:event_mng_app/screens/forgetpass.dart';
+import 'package:event_mng_app/screens/login.dart';
 import 'package:event_mng_app/screens/secondpage.dart';
 import 'package:flutter/material.dart';
 //
@@ -51,159 +50,92 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Event Management App',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue
-      ),
-      home: EventManagementPage(),
+      theme: ThemeData(primarySwatch: Colors.blue),
+      home: LoginPage(),
     );
   }
 }
 
 class EventManagementPage extends StatefulWidget {
+  const EventManagementPage({super.key});
+
   @override
   _EventManagementPageState createState() => _EventManagementPageState();
 }
 
 class _EventManagementPageState extends State<EventManagementPage> {
-  int _selectedItemIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Dazzleevents', style: TextStyle(color: Colors.black)),
-        backgroundColor: Colors.orange,
-        iconTheme: IconThemeData(color: Colors.white),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: Colors.black,
-        selectedLabelStyle: TextStyle(color: Colors.black),
-        showUnselectedLabels: false,
-        backgroundColor: Colors.orange,
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home, color: Colors.white),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person, color: Colors.white),
-            label: 'Profile',
-          ),
-        ],
-        onTap: (index) {
-          setState(() {
-            _selectedItemIndex = index;
-          });
-          if (index == 1) {
-            // Implement your authentication logic here
-            bool isLoggedIn = true; // Example: Assume user is not logged in
-            if (isLoggedIn) {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => ProfilePage()),
-              );
-            } else {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => LoginPage()),
-              );
-            }
-          }
-        },
-        currentIndex: _selectedItemIndex,
-        selectedFontSize: 18,
-      ),
-      body: Container(
-        child: GridView.count(
-          crossAxisCount: 2,
-          children: [
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => SecondPage()),
-                );
-              },
-              child: Image.asset(
-                'assets/images/events.png',
-                width: 100,
-                height: 100,
-              ),
-            ),
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => PackageListPage(
-
-                    ),
-                  ),
-                );
-              },
-              child: Image.asset(
-                'assets/images/pkgess.jpg',
-                width: 100,
-                height: 100,
-              ),
-            ),
-            // GestureDetector(
-            //   onTap: () {
-            //     Navigator.push(
-            //       context,
-            //       MaterialPageRoute(builder: (context) => BookingForm()),
-            //     );
-            //     // Add your celebration image functionality
-            //   },
-            //   child: Image.asset(
-            //     'assets/images/bookevent.png',
-            //     width: 100,
-            //     height: 100,
-            //   ),
-            // ),
-            // GestureDetector(
-            //   onTap: () {
-            //
-            //     // Add your celebration image functionality
-            //   },
-            //   child: Image.asset(
-            //     'assets/images/vendors.png',
-            //     width: 100,
-            //     height: 100,
-            //   ),
-            // ),
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => FeedbackForm()),
-                );
-                // Add your celebration image functionality
-              },
-              child: Image.asset(
-                'assets/images/feed.jpg',
-                width: 100,
-                height: 100,
-              ),
-            ),
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => AboutUsPage()),
-                );
-                // Add your celebration image functionality
-              },
-              child: Image.asset(
-                'assets/images/about.png',
-                width: 100,
-                height: 100,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
+        appBar: AppBar(
+            leadingWidth: 0,
+            centerTitle: false,
+            leading: const SizedBox(),
+            title: const Text('Dazzleevents', style: TextStyle(color: Colors.black)),
+            backgroundColor: Colors.orange),
+        body: Column(children: [
+          Row(children: [
+            Expanded(
+                child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => SecondPage()),
+                      );
+                    },
+                    child: Image.asset('assets/images/events.png', scale: 3))),
+            Expanded(
+                child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => PackageListPage()));
+                    },
+                    child: Image.asset('assets/images/pkgess.jpg', scale: 5)))
+          ]),
+          // GestureDetector(
+          //   onTap: () {
+          //     Navigator.push(
+          //       context,
+          //       MaterialPageRoute(builder: (context) => BookingForm()),
+          //     );
+          //     // Add your celebration image functionality
+          //   },
+          //   child: Image.asset(
+          //     'assets/images/bookevent.png',
+          //     width: 100,
+          //     height: 100,
+          //   ),
+          // ),
+          // GestureDetector(
+          //   onTap: () {
+          //
+          //     // Add your celebration image functionality
+          //   },
+          //   child: Image.asset(
+          //     'assets/images/vendors.png',
+          //     width: 100,
+          //     height: 100,
+          //   ),
+          // ),
+          const SizedBox(height: 20),
+          Row(children: [
+            Expanded(
+                child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => FeedbackForm()));
+                    },
+                    child: Image.asset('assets/images/feed.jpg', scale: 1.2))),
+            Expanded(
+                child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => AboutUsPage()),
+                      );
+                    },
+                    child: Image.asset('assets/images/about.png', scale: 1.2)))
+          ])
+        ]));
   }
 }//Profile page
 class ProfilePage extends StatelessWidget {
@@ -211,7 +143,10 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Profile'),
+        leadingWidth: 0,
+        centerTitle: false,
+        leading: const SizedBox(),
+        title: const Text('Profile', style: TextStyle(color: Colors.black)),
         backgroundColor: Colors.orange,
         foregroundColor: Colors.black,
         actions: [
@@ -303,7 +238,7 @@ class _SignupPageState extends State<SignupPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Sign Up'),
+        title: const Text('Sign up', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600, color: Colors.black)),
         backgroundColor: Colors.orange,
         foregroundColor: Colors.black,
       ),
@@ -389,110 +324,3 @@ class _SignupPageState extends State<SignupPage> {
 //Log in page
 
 // LoginPage
-class LoginPage extends StatelessWidget {
-  final Map<String, String>? signupDetails; // Add this variable to receive signup details
-
-  LoginPage({Key? key, this.signupDetails}) : super(key: key);
-
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Login'),
-        backgroundColor: Colors.orange,
-        foregroundColor: Colors.black,
-      ),
-      body: Padding(
-        padding: EdgeInsets.all(20.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            TextField(
-              controller: _emailController,
-              decoration: InputDecoration(
-                labelText: 'Email',
-              ),
-            ),
-            SizedBox(height: 20),
-            TextField(
-              controller: _passwordController,
-              obscureText: true,
-              decoration: InputDecoration(
-                labelText: 'Password',
-              ),
-            ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                String email = _emailController.text.trim();
-                String password = _passwordController.text.trim();
-
-                // Check if login details match (dummy check)
-                if (signupDetails != null &&
-                    email == signupDetails!['email'] &&
-                    password == signupDetails!['password']) {
-                  // Navigate to ProfilePage if login details match
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => ProfilePage()),
-                  );
-                } else if (email == 'khushikoriya118@gmail.com' && password == '123') {
-                  // Navigate to DummyPage if dummy login details match
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => ProfilePage()),
-                  );
-                } else {
-                  // Show error message if login details do not match
-                  showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return AlertDialog(
-                        title: Text('Error'),
-                        content: Text('Email or password is incorrect.'),
-                        actions: <Widget>[
-                          TextButton(
-                            onPressed: () {
-                              Navigator.of(context).pop();
-                            },
-                            child: Text('OK'),
-                          ),
-                        ],
-                      );
-                    },
-                  );
-                }
-
-              },
-              child: Text('Login'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => SignupPage()),
-                );
-              },
-              child: Text('SignUp'),),
-            // ElevatedButton(
-            //   onPressed: () {
-            //     Navigator.push(
-            //       context,
-            //       MaterialPageRoute(builder: (context) => ForgetPasswordScreen()),
-            //     );
-            //   },
-            //   child: Text('Forget Password'),),
-
-
-
-
-          ],
-        ),
-      ),
-    );
-  }
-}
