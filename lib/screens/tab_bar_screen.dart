@@ -19,7 +19,7 @@ class TabBarScreenState extends State<TabBarScreen> with TickerProviderStateMixi
 
   @override
   void initState() {
-    _tabController = TabController(length: 4, vsync: this, initialIndex: widget.tabIndex);
+    _tabController = TabController(length: 2, vsync: this, initialIndex: widget.tabIndex);
     currentTab.value = widget.tabIndex;
     super.initState();
   }
