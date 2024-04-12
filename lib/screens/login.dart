@@ -18,8 +18,7 @@ class LoginPage extends StatelessWidget {
         leading: const SizedBox(),
         title: const Text('Login',style: TextStyle(fontSize: 24,fontWeight: FontWeight.w800,color: Colors.black)),
         backgroundColor: Colors.orange,
-        foregroundColor: Colors.black,
-      ),
+        foregroundColor: Colors.black),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
@@ -28,18 +27,12 @@ class LoginPage extends StatelessWidget {
           children: [
             TextField(
               controller: _emailController,
-              decoration: const InputDecoration(
-                labelText: 'Email',
-              ),
-            ),
+              decoration: const InputDecoration(labelText: 'Email')),
             const SizedBox(height: 20),
             TextField(
               controller: _passwordController,
               obscureText: true,
-              decoration: const InputDecoration(
-                labelText: 'Password',
-              ),
-            ),
+              decoration: const InputDecoration(labelText: 'Password')),
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
@@ -100,19 +93,12 @@ class LoginPage extends StatelessWidget {
               child: Text('SignUp'),),
             // ElevatedButton(
             //   onPressed: () {
-            //     Navigator.push(
-            //       context,
-            //       MaterialPageRoute(builder: (context) => ForgetPasswordScreen()),
-            //     );
-            //   },
-            //   child: Text('Forget Password'),),
-
-
-
-
-          ],
-        ),
-      ),
-    );
+              //     Navigator.push(
+              //       context,
+              //       MaterialPageRoute(builder: (context) => ForgetPasswordScreen()),
+              //     );
+              //   },
+              //   child: Text('Forget Password'),),
+            ])));
   }
 }
