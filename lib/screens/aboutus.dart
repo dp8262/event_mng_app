@@ -1,41 +1,23 @@
 import 'package:flutter/material.dart';
 
-
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Event Management App',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: AboutUsPage(),
-    );
-  }
-}
-
 class AboutUsPage extends StatelessWidget {
+  const AboutUsPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('About Us'),
-        backgroundColor: Colors.orange, // Custom background color for app bar
-        foregroundColor: Colors.black, // Text color for app bar title
-      ),
-      body: Padding(
-        padding: EdgeInsets.all(16.0),
+      appBar: AppBar(title: const Text('About Us'), backgroundColor: Colors.orange, foregroundColor: Colors.black),
+      body:  Padding(
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             CircleAvatar(
               radius: 60,
-              backgroundImage: AssetImage('assets/images/company_logo.png'),
+              child: Image.asset("assets/images/about.png",fit: BoxFit.fill)
             ),
-            SizedBox(height: 20),
-            Text(
+            const SizedBox(height: 20),
+            const Text(
               'Welcome to Our Event Management Company',
               style: TextStyle(
                 fontSize: 24,
@@ -43,14 +25,14 @@ class AboutUsPage extends StatelessWidget {
               ),
               textAlign: TextAlign.center,
             ),
-            SizedBox(height: 20),
-            Text(
+            const SizedBox(height: 20),
+            const Text(
               'We specialize in organizing and managing a wide range of events, from corporate conferences to weddings and parties. Our team is dedicated to delivering exceptional experiences and making your event memorable.',
               style: TextStyle(fontSize: 16),
               textAlign: TextAlign.center,
             ),
-            SizedBox(height: 20),
-            Center(
+            const SizedBox(height: 20),
+            const Center(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [

@@ -130,7 +130,7 @@ class _EventManagementPageState extends State<EventManagementPage> {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => AboutUsPage()),
+                        MaterialPageRoute(builder: (context) => const AboutUsPage()),
                       );
                     },
                     child: Image.asset('assets/images/about.png', scale: 1.2)))

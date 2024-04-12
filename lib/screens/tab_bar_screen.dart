@@ -19,7 +19,7 @@ class TabBarScreenState extends State<TabBarScreen> with TickerProviderStateMixi
 
   @override
   void initState() {
-    _tabController = TabController(length: 4, vsync: this, initialIndex: widget.tabIndex);
+    _tabController = TabController(length: 2, vsync: this, initialIndex: widget.tabIndex);
     currentTab.value = widget.tabIndex;
     super.initState();
   }
@@ -64,24 +64,24 @@ class TabBarScreenState extends State<TabBarScreen> with TickerProviderStateMixi
                               tabs: const [
                                 Tab(
                                     child: Column(children: [
-                                      Expanded(flex: 3, child: Icon(Icons.home)),
+                                      Expanded(flex: 3, child: Icon(Icons.home,size: 28)),
                                       Expanded(flex: 1, child: SizedBox()),
                                       Expanded(
                                           flex: 2,
                                           child: Text(
                                             "Home",
-                                            style: TextStyle(fontSize: 13, fontWeight: FontWeight.w500)
+                                            style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500)
                                           ))
                                     ])),
                                 Tab(
                                     child: Column(children: [
-                                      Expanded(flex: 3, child: Icon(Icons.person)),
+                                      Expanded(flex: 3, child: Icon(Icons.person,size: 28)),
                                       Expanded(flex: 1, child: SizedBox()),
                                       Expanded(
                                           flex: 2,
                                           child: Text(
                                             "Profile",
-                                            style: TextStyle(fontSize: 13, fontWeight: FontWeight.w500)
+                                            style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500)
                                           ))
                                     ])),
                               ]))))
