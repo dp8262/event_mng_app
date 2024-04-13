@@ -4,6 +4,7 @@ import 'package:event_mng_app/screens/feedback.dart';
 import 'package:event_mng_app/screens/login.dart';
 import 'package:event_mng_app/screens/secondpage.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 //
 // void main() {
 //   runApp(const MyApp());
@@ -64,7 +65,6 @@ class EventManagementPage extends StatefulWidget {
 }
 
 class _EventManagementPageState extends State<EventManagementPage> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

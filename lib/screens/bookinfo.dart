@@ -1,4 +1,7 @@
+import 'package:event_mng_app/common/common_widget.dart';
+import 'package:event_mng_app/controller/packgeList_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'booking.dart';
 
 // Define a class to represent a package
@@ -32,36 +35,51 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class PackageListPage extends StatelessWidget {
-  // List of packages
-  final List<Package> packages = [
-    Package(
-      name: 'Package A',
-      price: '\$499.99',
-      description: 'Package A includes...',
-    ),
-    Package(
-      name: 'Package B',
-      price: '\$699.99',
-      description: 'Package B includes...',
-    ),
-    Package(
-      name: 'Package C',
-      price: '\$899.99',
-      description: 'Package C includes...',
-    ),
-    Package(
-      name: 'Package D',
-      price: '\$899.99',
-      description: 'Package D includes...',
-    ),
-    Package(
-      name: 'Package E',
-      price: '\$899.99',
-      description: 'Package E includes...',
-    ),
-    // Add more packages as needed
-  ];
+class PackageListPage extends StatefulWidget {
+
+  const PackageListPage({super.key});
+
+  @override
+  State<PackageListPage> createState() => _PackageListPageState();
+}
+
+class _PackageListPageState extends State<PackageListPage> {
+  final PackageListController _packageListController = Get.put(PackageListController());
+
+  // // List of packages
+  // final List<Package> packages = [
+  //   Package(
+  //     name: 'Package A',
+  //     price: '\$499.99',
+  //     description: 'Package A includes...',
+  //   ),
+  //   Package(
+  //     name: 'Package B',
+  //     price: '\$699.99',
+  //     description: 'Package B includes...',
+  //   ),
+  //   Package(
+  //     name: 'Package C',
+  //     price: '\$899.99',
+  //     description: 'Package C includes...',
+  //   ),
+  //   Package(
+  //     name: 'Package D',
+  //     price: '\$899.99',
+  //     description: 'Package D includes...',
+  //   ),
+  //   Package(
+  //     name: 'Package E',
+  //     price: '\$899.99',
+  //     description: 'Package E includes...',
+  //   ),
+  //   // Add more packages as needed
+  // ];
+  @override
+  void initState() {
+    _packageListController.getAllAssessmentsBy();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,68 +89,63 @@ class PackageListPage extends StatelessWidget {
         backgroundColor: Colors.orange,
         centerTitle: true,
       ),
-      body: ListView.builder(
-        itemCount: packages.length,
-        itemBuilder: (context, index) {
-          return PackageCard(package: packages[index]);
+      body: GetX<PackageListController>(
+        init: PackageListController(),
+        builder: (controller) {
+          return LoadingStateWidget(
+            isLoading: controller.isLoading.value,
+            child: ListView.builder(
+              itemCount: controller.productList.length,
+              itemBuilder: (context, index) {
+                return Card(
+                  elevation: 8,
+                  margin: EdgeInsets.all(16),
+                  child: Padding(
+                    padding: EdgeInsets.all(16),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          controller.productList[index].pName,
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(height: 8),
+                        Text(
+                          'Price: ${controller.productList[index].pPrice}',
+                          style: TextStyle(fontSize: 18),
+                        ),
+                        SizedBox(height: 8),
+                        Text(
+                          'Description: ${controller.productList[index].pDescription}',
+                          style: TextStyle(fontSize: 16),
+                        ),
+                        SizedBox(height: 16),
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => BookingForm()),
+                            );
+                          },
+                          // style: ElevatedButton.styleFrom(
+                          //   primary: Colors.orange,
+                          //   onPrimary: Colors.black,
+                          // ),
+                          child: Text('Book Event'),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            ),
+          );
         },
       ),
     );
   }
 }
 
-class PackageCard extends StatelessWidget {
-  final Package package;
-
-  const PackageCard({
-    Key? key,
-    required this.package,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      elevation: 8,
-      margin: EdgeInsets.all(16),
-      child: Padding(
-        padding: EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              package.name,
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(height: 8),
-            Text(
-              'Price: ${package.price}',
-              style: TextStyle(fontSize: 18),
-            ),
-            SizedBox(height: 8),
-            Text(
-              'Description: ${package.description}',
-              style: TextStyle(fontSize: 16),
-            ),
-            SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => BookingForm()),
-                  );
-              },
-              // style: ElevatedButton.styleFrom(
-              //   primary: Colors.orange,
-              //   onPrimary: Colors.black,
-              // ),
-              child: Text('Book Event'),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
